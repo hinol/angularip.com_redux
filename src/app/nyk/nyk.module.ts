@@ -9,8 +9,8 @@ import {TokenService} from './services/token/token.service';
 import {NykIndexComponent} from './components/index/index.component';
 import {TokenResolver} from './resolvers/token.resolver';
 import {NykAccountsComponent} from './components/accounts/accounts.component';
-import {routes} from './routes';
 import {NykComponent} from './nyk.component';
+import {routes} from './routes';
 
 @NgModule({
     imports: [
@@ -19,7 +19,7 @@ import {NykComponent} from './nyk.component';
         BrowserAnimationsModule,
         BrowserModule,
         HttpModule,
-        RouterModule.forRoot(routes, {useHash: true}),
+        RouterModule.forRoot(routes),
         FormsModule
     ],
     providers: [
@@ -27,7 +27,7 @@ import {NykComponent} from './nyk.component';
         TokenResolver,
     ],
     exports: [
-        NykIndexComponent,
+        NykComponent,
     ],
     declarations: [NykComponent, NykIndexComponent, NykAccountsComponent]
 })

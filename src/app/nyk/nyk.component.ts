@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 
 @Component({
     selector: 'nyk-root',
-    template: '<router-outlet></router-outlet>',
+    templateUrl: './nyk.component.html',
     styleUrls: ['./nyk.scss']
 })
 export class NykComponent {

@@ -12,7 +12,6 @@ export class NykIndexComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.tokenService.getAuthorizationToken().subscribe();
     }
 
 }

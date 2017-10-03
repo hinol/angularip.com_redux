@@ -31,14 +31,6 @@ export class TokenService {
             'grant_type=client_credentials',
             options)
             .map(data => data.json())
-            .do((data: TokenResponseInterface) => {
-                Observable
-                    .timer(data.expires_in - 100)
-                    .subscribe(() => {
-                        console.error('next call');
-                        this.getAuthorizationToken().subscribe();
-                    });
-            })
             .do(data => this._accessToken.next(data));
     }
 }
