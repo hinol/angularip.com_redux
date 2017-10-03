@@ -6,5 +6,10 @@
 export const environment = {
     production: false,
     apiBaseUrl: 'https://i1.test-services.nykredit.it/cem-hackathon-service/',
+    oauth: {
+        tokenUrl: 'https://i1.test-services.nykredit.it/security/oauth2/token',
+        clientId: 'test-clientid',
+        clientSecret: 'password'
+    },
     hmr: true
 };
