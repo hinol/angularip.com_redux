@@ -18,6 +18,8 @@ import {of} from 'rxjs/observable/of';
 import * as token from '../actions/token';
 import {TokenService} from '../services/token/token.service';
 
+import 'rxjs/add/operator/last';
+
 
 @Injectable()
 export class TokenEffects {

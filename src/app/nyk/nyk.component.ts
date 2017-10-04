@@ -31,14 +31,21 @@ export class NykComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.tokenExpire$.subscribe(
-            v => {
-                if (v <= 0) {
-                    this.loginDialogService.login().subscribe();
-                }
+        this.tokenExpire$.subscribe(v => {
+            if (v <= 0) {
+                this.openLoginForm();
             }
-        )
+        });
+    }
 
+    private openLoginForm() {
+        return this.loginDialogService.login().subscribe(() => {
+            this.tokenExpire$.take(1).subscribe(v => {
+                if (v === 0) {
+                    this.openLoginForm();
+                }
+            });
+        })
     }
 
 }

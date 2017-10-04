@@ -10,11 +10,8 @@ export class LoginDialogsService {
     }
 
     public login(): Observable<boolean> {
-
         let dialogRef: MdDialogRef<NykDialogLoginComponent>;
-
         dialogRef = this.dialog.open(NykDialogLoginComponent);
-
         return dialogRef.afterClosed();
     }
 }
