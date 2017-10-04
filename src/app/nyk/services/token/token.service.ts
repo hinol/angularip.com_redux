@@ -20,10 +20,10 @@ export class TokenService {
     }
 
 
-    public getAuthorizationToken(): Observable<TokenResponseInterface> {
+    public getAuthorizationToken(login: string, password: string): Observable<TokenResponseInterface> {
         const headers = new Headers();
         headers.set('Content-Type', 'application/x-www-form-urlencoded');
-        headers.set('Authorization', 'Basic ' + btoa(environment.oauth.clientId + ':' + environment.oauth.clientSecret));
+        headers.set('Authorization', 'Basic ' + btoa(login + ':' + password));
         const options = new RequestOptions({headers: headers});
 
         return this.http.post(

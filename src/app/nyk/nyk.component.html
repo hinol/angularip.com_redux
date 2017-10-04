@@ -1,3 +1,21 @@
+<md-toolbar>
+    <span>Nyk App</span>
+</md-toolbar>
 <a [routerLink]="''">Index</a>
+
+
 <a [routerLink]="'accounts'">Accounts</a>
-<router-outlet></router-outlet>
+
+
+<router-outlet>
+
+</router-outlet>
+
+1{{showSidenav$ | async | json}}2
+
+-{{tokenExpire$|async}}-
+
+
+<button md-raised-button (click)="openLogin()" *ngIf="!(tokenState | async)">login</button>
+
+

@@ -1,0 +1,46 @@
+<div *ngIf="state === STATE.LOADER">
+
+    <md-spinner></md-spinner>
+</div>
+
+<form *ngIf="state === STATE.DEFAULT" [formGroup]="loginForm" novalidate
+      (ngSubmit)="tryLogin(loginForm.value, loginForm.valid)">
+
+    Default data:
+    Login: 'test-clientid', <br>
+    Password: 'password' <br>
+    <button md-raised-button (click)="setDefaultData()">Set default data</button>
+    <hr>
+    <div class="form-group text-center">
+        <md-input-container>
+            <input mdInput type="text" class="form-control" formControlName="login" name="login" placeholder="Login">
+            <md-hint *ngIf="submitted && loginForm.hasError('required', ['login'])" class="text-danger">
+                Email is required
+            </md-hint>
+            <md-hint *ngIf="submitted && loginForm.hasError('minlength', ['login'])" class="text-danger">
+                Invalid length
+            </md-hint>
+        </md-input-container>
+    </div>
+
+
+    <div class="form-group text-center">
+        <md-input-container>
+            <input mdInput type="password" class="form-control" formControlName="password" name="password"
+                   placeholder="password">
+            <md-hint *ngIf="submitted && loginForm.hasError('required', ['password'])" class="text-danger">
+                Password is required
+            </md-hint>
+            <md-hint *ngIf="submitted && loginForm.hasError('minlength', ['password'])" class="text-danger">
+                Minimum length is 5
+            </md-hint>
+        </md-input-container>
+    </div>
+
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-default" md-raised-button>Login</button>
+    </div>
+
+
+</form>
