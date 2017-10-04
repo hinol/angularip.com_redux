@@ -6,16 +6,13 @@
 
 <a [routerLink]="'accounts'">Accounts</a>
 
+Token expire in {{tokenExpire$|async}}
 
 <router-outlet>
 
 </router-outlet>
 
-1{{showSidenav$ | async | json}}2
 
--{{tokenExpire$|async}}-
-
-
-<button md-raised-button (click)="openLogin()" *ngIf="!(tokenState | async)">login</button>
+<button md-raised-button (click)="openLogin()" *ngIf="!(tokenExpire$ | async)">login</button>
 
 

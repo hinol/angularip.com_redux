@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {TokenService} from '../../services/token/token.service';
 
 @Component({
     selector: 'nyk-index',
@@ -8,7 +7,7 @@ import {TokenService} from '../../services/token/token.service';
 })
 export class NykIndexComponent implements OnInit {
 
-    constructor(public tokenService: TokenService) {
+    constructor() {
     }
 
     ngOnInit() {

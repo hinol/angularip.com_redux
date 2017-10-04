@@ -2,10 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {MdDialogRef} from '@angular/material';
 import {LoginFormFactory} from './login.form.factory';
 import {FormGroup} from '@angular/forms';
-import {TokenService} from '../../../services/token/token.service';
 import {Store} from '@ngrx/store';
 import * as fromRoot from '../../../reducers';
-import * as token from '../../../actions/token.action';
+import * as token from '../../../actions/token';
+import {Observable} from 'rxjs/Observable';
 
 @Component({
     selector: 'nyk-dialog-login',
@@ -13,6 +13,9 @@ import * as token from '../../../actions/token.action';
     styleUrls: ['./login.component.scss'],
 })
 export class NykDialogLoginComponent implements OnInit {
+    tokenExpire$: Observable<number>;
+    loginProcess$: Observable<boolean>;
+    tokenLoginProcess$: Observable<boolean>;
     loginForm: FormGroup;
     login: string;
     password: string;
@@ -24,25 +27,28 @@ export class NykDialogLoginComponent implements OnInit {
     };
 
     constructor(public dialogRef: MdDialogRef<NykDialogLoginComponent>,
-                private tokenService: TokenService,
                 private store: Store<fromRoot.State>) {
+
+        this.loginProcess$ = store.select(fromRoot.getTokenLoginProcess);
+        this.tokenExpire$ = this.store.select(fromRoot.getTokenExpire);
     }
 
     ngOnInit() {
         this.loginForm = LoginFormFactory.get();
+        this.tokenExpire$.subscribe(
+            v => {
+                if (v > 0) {
+                    this.dialogRef.close();
+                }
+            }
+        )
+
     }
 
     tryLogin(data, valid): void {
         this.submitted = true;
         if (valid) {
-            this.state = this.STATE.LOADER;
             this.store.dispatch(new token.GetToken(data));
-            // this.tokenService.getAuthorizationToken(data.login, data.password).subscribe(
-            //     data => {
-            //         this.state = this.STATE.DEFAULT;
-            //         console.error(data);
-            //     }
-            // )
         }
 
     }

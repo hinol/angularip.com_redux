@@ -1,6 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {State} from './reducers/token.reducer';
+import {State} from './reducers/token';
 import {Observable} from 'rxjs/Observable';
 import * as fromRoot from './reducers';
 import {TokenResponseInterface} from './services/token/token.response.interface';
@@ -11,13 +11,16 @@ import {LoginDialogsService} from './components/dialog/login/login.dialog.servic
     templateUrl: './nyk.component.html',
     styleUrls: ['./nyk.scss']
 })
-export class NykComponent {
+export class NykComponent implements OnInit {
+
+    showSidenavExpire$: Observable<number>;
 
 
     tokenState: Observable<State>;
     tokenExpire$: Observable<number>;
     token$: Observable<TokenResponseInterface>;
     showSidenav$: Observable<boolean>;
+    getTokenShowSidenavExpire$: Observable<boolean>;
 
 
     constructor(private store: Store<fromRoot.State>,
@@ -25,15 +28,17 @@ export class NykComponent {
         this.tokenState = this.store.select('token');
         this.token$ = this.store.select(fromRoot.getToken);
         this.tokenExpire$ = this.store.select(fromRoot.getTokenExpire);
-        this.showSidenav$ = this.store.select(fromRoot.getShowSidenav);
     }
 
-    openLogin(): void {
-        this.loginDialogService.login().subscribe(
-            success => {
-                console.error('success', success);
+    ngOnInit(): void {
+        this.tokenExpire$.subscribe(
+            v => {
+                if (v <= 0) {
+                    this.loginDialogService.login().subscribe();
+                }
             }
-        );
+        )
+
     }
 
 }

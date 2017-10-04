@@ -12,10 +12,18 @@ import {NykComponent} from './nyk.component';
 import {routes} from './routes';
 
 import {StoreModule} from '@ngrx/store';
-import {MatButtonModule, MatDialogModule, MatInputModule, MdToolbarModule, MatProgressSpinnerModule} from '@angular/material';
+import {
+    MatButtonModule,
+    MatDialogModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    MdToolbarModule
+} from '@angular/material';
 import {NykDialogLoginComponent} from './components/dialog/login/login.component';
 import {reducer} from './reducers';
 import {LoginDialogsService} from './components/dialog/login/login.dialog.service';
+import {EffectsModule} from '@ngrx/effects';
+import {TokenEffects} from './effects/token';
 
 @NgModule({
     imports: [
@@ -33,7 +41,11 @@ import {LoginDialogsService} from './components/dialog/login/login.dialog.servic
         MatDialogModule,
         MatButtonModule,
         MatInputModule,
-        MatProgressSpinnerModule
+        MatProgressSpinnerModule,
+
+
+        EffectsModule.run(TokenEffects),
+
     ],
     providers: [
         TokenService,

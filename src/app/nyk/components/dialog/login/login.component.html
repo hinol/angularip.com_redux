@@ -1,15 +1,19 @@
-<div *ngIf="state === STATE.LOADER">
+{{loginProcess$|async|json}}
+
+<div *ngIf="loginProcess$|async">
 
     <md-spinner></md-spinner>
 </div>
 
-<form *ngIf="state === STATE.DEFAULT" [formGroup]="loginForm" novalidate
+
+<form *ngIf="!(loginProcess$|async)" [formGroup]="loginForm" novalidate
       (ngSubmit)="tryLogin(loginForm.value, loginForm.valid)">
+
 
     Default data:
     Login: 'test-clientid', <br>
     Password: 'password' <br>
-    <button md-raised-button (click)="setDefaultData()">Set default data</button>
+    <button md-raised-button (click)="setDefaultData()" type="button">Set default data</button>
     <hr>
     <div class="form-group text-center">
         <md-input-container>
