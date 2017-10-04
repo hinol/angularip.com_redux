@@ -46,7 +46,6 @@ export class TokenEffects {
         .ofType(token.SET_EXPIRE)
         .map(toPayload)
         .switchMap(expire => {
-
             if (expire > 0) {
                 return Observable.timer(1)
                     .map(v => new token.SetExpire(expire - 10));
