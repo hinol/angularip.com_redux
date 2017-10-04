@@ -35,6 +35,7 @@ export function reducer(state = initialState, action: token.Actions): State {
         case token.SET_EXPIRE: {
             return {
                 ...state,
+                expire: action.payload,
                 loginProcess: false
             };
         }
