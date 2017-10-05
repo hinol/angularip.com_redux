@@ -30,7 +30,7 @@ export const getTokenState = (state: State) => state.token;
 export const getToken = createSelector(getTokenState, fromToken.getToken);
 export const getTokenExpire = createSelector(getTokenState, fromToken.getExpire);
 export const getTokenLoginProcess = createSelector(getTokenState, fromToken.getLoginProcess);
-export const getTokenShowSidenavExpire = createSelector(getTokenState, fromToken.getShowSidenav);
+export const getTokenShowLoginForm = createSelector(getTokenState, fromToken.getShowLoginForm);
 
 
 export const getLayoutState = (state: State) => state.layout;

@@ -13,11 +13,11 @@ import {routes} from './routes';
 
 import {StoreModule} from '@ngrx/store';
 import {
-    MatButtonModule,
-    MatDialogModule,
-    MatInputModule,
-    MatProgressSpinnerModule,
-    MdToolbarModule
+  MatButtonModule,
+  MatDialogModule,
+  MatInputModule,
+  MatProgressSpinnerModule,
+  MdToolbarModule
 } from '@angular/material';
 import {NykDialogLoginComponent} from './components/dialog/login/login.component';
 import {reducer} from './reducers';
@@ -26,38 +26,42 @@ import {EffectsModule} from '@ngrx/effects';
 import {TokenEffects} from './effects/token';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        BrowserModule,
-        BrowserAnimationsModule,
-        BrowserModule,
-        HttpModule,
-        RouterModule.forRoot(routes),
-        FormsModule,
-        ReactiveFormsModule,
-        StoreModule.provideStore(reducer),
+  imports: [
+    CommonModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    HttpModule,
+    RouterModule.forRoot(routes),
+    FormsModule,
+    ReactiveFormsModule,
+    StoreModule.provideStore(reducer),
 
-        MdToolbarModule,
-        MatDialogModule,
-        MatButtonModule,
-        MatInputModule,
-        MatProgressSpinnerModule,
+    MdToolbarModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
 
 
-        EffectsModule.run(TokenEffects),
+    EffectsModule.run(TokenEffects),
 
+  ],
+  providers: [
+    TokenService,
+    LoginDialogsService,
+  ],
+  exports:
+    [
+      NykComponent,
     ],
-    providers: [
-        TokenService,
-        LoginDialogsService,
+  declarations:
+    [
+      NykComponent, NykIndexComponent, NykAccountsComponent, NykDialogLoginComponent
     ],
-    exports:
-        [
-            NykComponent,
-        ],
-    declarations:
-        [NykComponent, NykIndexComponent, NykAccountsComponent, NykDialogLoginComponent],
-    entryComponents: [NykDialogLoginComponent]
+  entryComponents: [
+    NykDialogLoginComponent
+  ]
 
 })
 
