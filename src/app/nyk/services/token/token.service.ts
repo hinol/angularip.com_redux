@@ -6,11 +6,14 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/observable/timer';
 import {TokenResponseInterface} from './token.response.interface';
+import {LocalStorageService} from 'angular-2-local-storage';
+
 
 @Injectable()
 export class TokenService {
+    private STORAGE_TOKEN_KEY = 'STORAGE_TOKEN_KEY';
 
-    constructor(private http: Http) {
+    constructor(private http: Http, private localStorageService: LocalStorageService) {
     }
 
     public getAuthorizationToken(login: string, password: string): Observable<TokenResponseInterface> {
@@ -23,6 +26,22 @@ export class TokenService {
             environment.oauth.tokenUrl,
             'grant_type=client_credentials',
             options)
-            .map(data => data.json());
+            .map(data => data.json())
+            .do(token => this.saveToStorage(token));
     }
+
+    public saveToStorage(token: TokenResponseInterface) {
+        return this.localStorageService.set(this.STORAGE_TOKEN_KEY, token);
+    }
+
+    public saveExpireToStorage(expire_in: number) {
+        const token = this.getFromStorage();
+        token.expires_in = expire_in;
+        this.saveToStorage(token);
+    }
+
+    public getFromStorage(): TokenResponseInterface {
+        return <TokenResponseInterface>this.localStorageService.get(this.STORAGE_TOKEN_KEY);
+    }
+
 }
