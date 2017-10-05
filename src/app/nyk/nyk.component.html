@@ -8,8 +8,11 @@
 
 Token expire in {{tokenExpire$|async}}
 
-<router-outlet>
 
+<nyk-user-login-required *ngIf="(showLoginForm$|async)"></nyk-user-login-required>
+
+
+<router-outlet *ngIf="tokenExpire$|async">
 </router-outlet>
 
 

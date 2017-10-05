@@ -13,55 +13,58 @@ import {routes} from './routes';
 
 import {StoreModule} from '@ngrx/store';
 import {
-  MatButtonModule,
-  MatDialogModule,
-  MatInputModule,
-  MatProgressSpinnerModule,
-  MdToolbarModule
+    MatButtonModule,
+    MatCardModule,
+    MatDialogModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    MdToolbarModule,
 } from '@angular/material';
 import {NykDialogLoginComponent} from './components/dialog/login/login.component';
 import {reducer} from './reducers';
 import {LoginDialogsService} from './components/dialog/login/login.dialog.service';
 import {EffectsModule} from '@ngrx/effects';
 import {TokenEffects} from './effects/token';
+import {NykUserLoginRequiredComponent} from './components/user/login-required/login-required.component';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    BrowserModule,
-    BrowserAnimationsModule,
-    BrowserModule,
-    HttpModule,
-    RouterModule.forRoot(routes),
-    FormsModule,
-    ReactiveFormsModule,
-    StoreModule.provideStore(reducer),
+    imports: [
+        CommonModule,
+        BrowserModule,
+        BrowserAnimationsModule,
+        BrowserModule,
+        HttpModule,
+        RouterModule.forRoot(routes),
+        FormsModule,
+        ReactiveFormsModule,
+        StoreModule.provideStore(reducer),
 
-    MdToolbarModule,
-    MatDialogModule,
-    MatButtonModule,
-    MatInputModule,
-    MatProgressSpinnerModule,
+        MdToolbarModule,
+        MatDialogModule,
+        MatButtonModule,
+        MatInputModule,
+        MatProgressSpinnerModule,
+        MatCardModule,
 
 
-    EffectsModule.run(TokenEffects),
+        EffectsModule.run(TokenEffects),
 
-  ],
-  providers: [
-    TokenService,
-    LoginDialogsService,
-  ],
-  exports:
-    [
-      NykComponent,
     ],
-  declarations:
-    [
-      NykComponent, NykIndexComponent, NykAccountsComponent, NykDialogLoginComponent
+    providers: [
+        TokenService,
+        LoginDialogsService,
     ],
-  entryComponents: [
-    NykDialogLoginComponent
-  ]
+    exports:
+        [
+            NykComponent,
+        ],
+    declarations:
+        [
+            NykComponent, NykIndexComponent, NykAccountsComponent, NykDialogLoginComponent, NykUserLoginRequiredComponent
+        ],
+    entryComponents: [
+        NykDialogLoginComponent
+    ]
 
 })
 

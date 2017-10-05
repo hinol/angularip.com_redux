@@ -25,24 +25,13 @@ export class NykDialogLoginComponent implements OnInit {
         LOADER: 'loader',
         DEFAULT: ''
     };
-
-    constructor(public dialogRef: MdDialogRef<NykDialogLoginComponent>,
-                private store: Store<fromRoot.State>) {
-
+    constructor(private store: Store<fromRoot.State>) {
         this.loginProcess$ = store.select(fromRoot.getTokenLoginProcess);
         this.tokenExpire$ = this.store.select(fromRoot.getTokenExpire);
     }
 
     ngOnInit() {
         this.loginForm = LoginFormFactory.get();
-        this.tokenExpire$.subscribe(
-            v => {
-                if (v > 0) {
-                    this.dialogRef.close();
-                }
-            }
-        )
-
     }
 
     tryLogin(data, valid): void {
@@ -50,7 +39,6 @@ export class NykDialogLoginComponent implements OnInit {
         if (valid) {
             this.store.dispatch(new token.GetToken(data));
         }
-
     }
 
     setDefaultData() {

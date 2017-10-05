@@ -1,20 +1,8 @@
-{{loginProcess$|async|json}}
-
-<div *ngIf="loginProcess$|async">
-
+<div *ngIf="loginProcess$|async" class="d-flex justify-content-center">
     <md-spinner></md-spinner>
 </div>
-
-
 <form *ngIf="!(loginProcess$|async)" [formGroup]="loginForm" novalidate
       (ngSubmit)="tryLogin(loginForm.value, loginForm.valid)">
-
-
-    Default data:
-    Login: 'test-clientid', <br>
-    Password: 'password' <br>
-    <button md-raised-button (click)="setDefaultData()" type="button">Set default data</button>
-    <hr>
     <div class="form-group text-center">
         <md-input-container>
             <input mdInput type="text" class="form-control" formControlName="login" name="login" placeholder="Login">
@@ -26,8 +14,6 @@
             </md-hint>
         </md-input-container>
     </div>
-
-
     <div class="form-group text-center">
         <md-input-container>
             <input mdInput type="password" class="form-control" formControlName="password" name="password"
@@ -41,10 +27,19 @@
         </md-input-container>
     </div>
 
-
     <div class="text-center">
-        <button type="submit" class="btn btn-default" md-raised-button>Login</button>
+        <button type="submit" color="accent" class="btn btn-default" md-raised-button>Login</button>
     </div>
-
-
+    <md-card>
+        <md-card-content class="d-flex justify-content-between">
+            <div>
+                Default data:
+                Login: 'test-clientid', <br>
+                Password: 'password' <br>
+            </div>
+            <div>
+                <button md-raised-button (click)="setDefaultData()" type="button">Set default data</button>
+            </div>
+        </md-card-content>
+    </md-card>
 </form>
