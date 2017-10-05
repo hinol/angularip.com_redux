@@ -11,41 +11,17 @@ import {LoginDialogsService} from './components/dialog/login/login.dialog.servic
     templateUrl: './nyk.component.html',
     styleUrls: ['./nyk.scss']
 })
-export class NykComponent implements OnInit {
-
-    showSidenavExpire$: Observable<number>;
-
+export class NykComponent  {
 
     tokenState: Observable<State>;
     tokenExpire$: Observable<number>;
     token$: Observable<TokenResponseInterface>;
-    showSidenav$: Observable<boolean>;
-    getTokenShowSidenavExpire$: Observable<boolean>;
 
 
-    constructor(private store: Store<fromRoot.State>,
-                private loginDialogService: LoginDialogsService) {
+    constructor(private store: Store<fromRoot.State>) {
         this.tokenState = this.store.select('token');
         this.token$ = this.store.select(fromRoot.getToken);
         this.tokenExpire$ = this.store.select(fromRoot.getTokenExpire);
-    }
-
-    ngOnInit(): void {
-        this.tokenExpire$.subscribe(v => {
-            if (v <= 0) {
-                this.openLoginForm();
-            }
-        });
-    }
-
-    private openLoginForm() {
-        return this.loginDialogService.login().subscribe(() => {
-            this.tokenExpire$.take(1).subscribe(v => {
-                if (v === 0) {
-                    this.openLoginForm();
-                }
-            });
-        })
     }
 
 }
