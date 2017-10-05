@@ -25,7 +25,7 @@ export class NykDialogLoginComponent implements OnInit {
         LOADER: 'loader',
         DEFAULT: ''
     };
-    constructor(private store: Store<fromRoot.State>) {
+    constructor(private store: Store<fromRoot.StateCollection>) {
         this.loginProcess$ = store.select(fromRoot.getTokenLoginProcess);
         this.tokenExpire$ = this.store.select(fromRoot.getTokenExpire);
     }

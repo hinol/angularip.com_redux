@@ -12,8 +12,13 @@ export class LoginDialogsService {
 
     public login(): Observable<boolean> {
         const config: MdDialogConfig = {
-            width: '600px'
+            width: '600px',
+            disableClose: true
         };
         return this.dialog.open(NykDialogLoginComponent, config).afterClosed();
+    }
+
+    public close() {
+        return this.dialog.closeAll();
     }
 }

@@ -7,7 +7,7 @@ import {storeFreeze} from 'ngrx-store-freeze';
 import {environment} from '../../../environments/environment';
 
 
-export interface State {
+export interface StateCollection {
     layout: fromLayout.State;
     token: fromToken.State;
 }
@@ -20,8 +20,8 @@ const reducers = {
     layout: fromLayout.reducer,
     token: fromToken.reducer,
 };
-const developmentReducer: ActionReducer<State> = compose(storeFreeze, combineReducers)(reducers);
-const productionReducer: ActionReducer<State> = combineReducers(reducers);
+const developmentReducer: ActionReducer<StateCollection> = compose(storeFreeze, combineReducers)(reducers);
+const productionReducer: ActionReducer<StateCollection> = combineReducers(reducers);
 
 export function reducer(state: any, action: any) {
     if (environment.production) {
@@ -31,13 +31,16 @@ export function reducer(state: any, action: any) {
     }
 }
 
-export const getTokenState = (state: State) => state.token;
+export const getTokenState = (state: StateCollection) => state.token;
 export const getToken = createSelector(getTokenState, fromToken.getToken);
 export const getTokenExpire = createSelector(getTokenState, fromToken.getExpire);
 export const getTokenLoginProcess = createSelector(getTokenState, fromToken.getLoginProcess);
 export const getTokenShowLoginForm = createSelector(getTokenState, fromToken.getShowLoginForm);
 
+export const TokenState = {
+    getTokenShowLoginForm: createSelector(getTokenState, fromToken.getShowLoginForm)
+};
 
-export const getLayoutState = (state: State) => state.layout;
+export const getLayoutState = (state: StateCollection) => state.layout;
 export const getShowSidenav = createSelector(getLayoutState, fromLayout.getShowSidenav);
 export const getShowSidenavExpire = createSelector(getLayoutState, fromLayout.getShowSidenavExpire);

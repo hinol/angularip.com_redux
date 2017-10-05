@@ -17,7 +17,7 @@ export class NykComponent {
     token$: Observable<TokenResponseInterface>;
     showLoginForm$: Observable<boolean>;
 
-    constructor(private store: Store<fromRoot.State>) {
+    constructor(private store: Store<fromRoot.StateCollection>) {
         this.tokenState = this.store.select('token');
         this.token$ = this.store.select(fromRoot.getToken);
         this.tokenExpire$ = this.store.select(fromRoot.getTokenExpire);
