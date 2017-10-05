@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {LoginDialogsService} from '../../dialog/login/login.dialog.service';
-import {StateCollection, TokenState} from '../../../reducers/index';
+import {StateCollection, TokenState} from '../../../redux/reducers/index';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs/Observable';
 

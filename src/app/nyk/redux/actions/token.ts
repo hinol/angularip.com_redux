@@ -1,5 +1,5 @@
 import {Action} from '@ngrx/store';
-import {TokenResponseInterface} from '../services/token/token.response.interface';
+import {TokenResponseInterface} from '../../services/token/token.response.interface';
 
 export const SET_TOKEN = '[Token] Set';
 export const SET_EXPIRE = '[Token] Set expire';

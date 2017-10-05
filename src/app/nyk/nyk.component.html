@@ -1,8 +1,10 @@
 <md-toolbar>
     <span>Nyk App</span>
-    <div class="pull-right">
+    <span class="example-spacer"></span>
+
+    <md-icon>
         Token expire in {{tokenExpire$|async}}
-    </div>
+    </md-icon>
 </md-toolbar>
 
 
@@ -10,6 +12,7 @@
 
 
 <router-outlet *ngIf="tokenExpire$|async">
+    <nyk-accounts></nyk-accounts>
 </router-outlet>
 
 

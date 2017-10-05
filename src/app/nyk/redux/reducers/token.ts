@@ -1,4 +1,4 @@
-import {TokenResponseInterface} from '../services/token/token.response.interface';
+import {TokenResponseInterface} from '../../services/token/token.response.interface';
 import * as  token from '../actions/token';
 
 

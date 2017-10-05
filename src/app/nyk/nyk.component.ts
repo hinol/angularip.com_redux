@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {Observable} from 'rxjs/Observable';
 import {TokenResponseInterface} from './services/token/token.response.interface';
-import {StateCollection, TokenState} from './reducers/index';
+import {StateCollection, TokenState} from './redux/reducers/index';
 
 @Component({
     selector: 'nyk-root',

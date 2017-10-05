@@ -2,9 +2,9 @@ import {Component, OnInit} from '@angular/core';
 import {LoginFormFactory} from './login.form.factory';
 import {FormGroup} from '@angular/forms';
 import {Store} from '@ngrx/store';
-import * as token from '../../../actions/token';
+import * as token from '../../../redux/actions/token';
 import {Observable} from 'rxjs/Observable';
-import {StateCollection, TokenState} from '../../../reducers/index';
+import {StateCollection, TokenState} from '../../../redux/reducers/index';
 
 @Component({
     selector: 'nyk-dialog-login',

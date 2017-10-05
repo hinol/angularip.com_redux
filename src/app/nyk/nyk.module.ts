@@ -21,10 +21,10 @@ import {
     MdToolbarModule,
 } from '@angular/material';
 import {NykDialogLoginComponent} from './components/dialog/login/login.component';
-import {reducer} from './reducers';
+import {reducer} from './redux/reducers';
 import {LoginDialogsService} from './components/dialog/login/login.dialog.service';
 import {EffectsModule} from '@ngrx/effects';
-import {TokenEffects} from './effects/token';
+import {TokenEffects} from './redux/effects/token';
 import {NykUserLoginRequiredComponent} from './components/user/login-required/login-required.component';
 
 @NgModule({
