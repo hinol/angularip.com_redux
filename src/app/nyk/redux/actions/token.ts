@@ -5,12 +5,20 @@ export const SET_TOKEN = '[Token] Set';
 export const SET_EXPIRE = '[Token] Set expire';
 export const GET_TOKEN = '[Token] Get expire';
 export const SELECT = '[Token] Select';
+export const CHECK_TOKEN_STORAGE = '[Token] check storage';
 
 
 export class SetToken implements Action {
     readonly type = SET_TOKEN;
 
     constructor(public payload: TokenResponseInterface) {
+    }
+}
+
+export class CheckTokenStorage implements Action {
+    readonly type = CHECK_TOKEN_STORAGE;
+
+    constructor(public payload: any) {
     }
 }
 
@@ -35,5 +43,6 @@ export class SelectAction implements Action {
     }
 }
 
+
 export type Actions
-    = SetToken | SetExpire | GetToken | SelectAction;
+    = SetToken | SetExpire | GetToken | SelectAction | CheckTokenStorage;

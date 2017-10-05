@@ -26,6 +26,7 @@ import {LoginDialogsService} from './components/dialog/login/login.dialog.servic
 import {EffectsModule} from '@ngrx/effects';
 import {TokenEffects} from './redux/effects/token';
 import {NykUserLoginRequiredComponent} from './components/user/login-required/login-required.component';
+import {LocalStorageModule} from 'angular-2-local-storage';
 
 @NgModule({
     imports: [
@@ -48,6 +49,11 @@ import {NykUserLoginRequiredComponent} from './components/user/login-required/lo
 
 
         EffectsModule.run(TokenEffects),
+
+        LocalStorageModule.withConfig({
+            prefix: 'nyk',
+            storageType: 'localStorage'
+        })
 
     ],
     providers: [
