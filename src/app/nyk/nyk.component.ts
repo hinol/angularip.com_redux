@@ -1,9 +1,8 @@
 import {Component} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {State} from './reducers/token';
 import {Observable} from 'rxjs/Observable';
-import * as fromRoot from './reducers';
 import {TokenResponseInterface} from './services/token/token.response.interface';
+import {StateCollection, TokenState} from './reducers/index';
 
 @Component({
     selector: 'nyk-root',
@@ -12,15 +11,13 @@ import {TokenResponseInterface} from './services/token/token.response.interface'
 })
 export class NykComponent {
 
-    tokenState: Observable<State>;
     tokenExpire$: Observable<number>;
     token$: Observable<TokenResponseInterface>;
     showLoginForm$: Observable<boolean>;
 
-    constructor(private store: Store<fromRoot.StateCollection>) {
-        this.tokenState = this.store.select('token');
-        this.token$ = this.store.select(fromRoot.getToken);
-        this.tokenExpire$ = this.store.select(fromRoot.getTokenExpire);
-        this.showLoginForm$ = this.store.select(fromRoot.getTokenShowLoginForm);
+    constructor(private store: Store<StateCollection>) {
+        this.token$ = this.store.select(TokenState.getToken);
+        this.tokenExpire$ = this.store.select(TokenState.getTokenExpire);
+        this.showLoginForm$ = this.store.select(TokenState.showLoginForm);
     }
 }

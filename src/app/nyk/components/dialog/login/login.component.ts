@@ -1,11 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {MdDialogRef} from '@angular/material';
 import {LoginFormFactory} from './login.form.factory';
 import {FormGroup} from '@angular/forms';
 import {Store} from '@ngrx/store';
-import * as fromRoot from '../../../reducers';
 import * as token from '../../../actions/token';
 import {Observable} from 'rxjs/Observable';
+import {StateCollection, TokenState} from '../../../reducers/index';
 
 @Component({
     selector: 'nyk-dialog-login',
@@ -25,9 +24,10 @@ export class NykDialogLoginComponent implements OnInit {
         LOADER: 'loader',
         DEFAULT: ''
     };
-    constructor(private store: Store<fromRoot.StateCollection>) {
-        this.loginProcess$ = store.select(fromRoot.getTokenLoginProcess);
-        this.tokenExpire$ = this.store.select(fromRoot.getTokenExpire);
+
+    constructor(private store: Store<StateCollection>) {
+        this.loginProcess$ = store.select(TokenState.getTokenLoginProcess);
+        this.tokenExpire$ = this.store.select(TokenState.getTokenExpire);
     }
 
     ngOnInit() {

@@ -12,10 +12,6 @@ export interface StateCollection {
     token: fromToken.State;
 }
 
-export interface StateToken {
-    token: fromToken.State;
-}
-
 const reducers = {
     layout: fromLayout.reducer,
     token: fromToken.reducer,
@@ -32,13 +28,13 @@ export function reducer(state: any, action: any) {
 }
 
 export const getTokenState = (state: StateCollection) => state.token;
-export const getToken = createSelector(getTokenState, fromToken.getToken);
-export const getTokenExpire = createSelector(getTokenState, fromToken.getExpire);
-export const getTokenLoginProcess = createSelector(getTokenState, fromToken.getLoginProcess);
-export const getTokenShowLoginForm = createSelector(getTokenState, fromToken.getShowLoginForm);
+
 
 export const TokenState = {
-    getTokenShowLoginForm: createSelector(getTokenState, fromToken.getShowLoginForm)
+    showLoginForm: createSelector(getTokenState, fromToken.getShowLoginForm),
+    getToken: createSelector(getTokenState, fromToken.getToken),
+    getTokenExpire: createSelector(getTokenState, fromToken.getExpire),
+    getTokenLoginProcess: createSelector(getTokenState, fromToken.getLoginProcess),
 };
 
 export const getLayoutState = (state: StateCollection) => state.layout;

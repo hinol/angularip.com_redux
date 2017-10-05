@@ -1,12 +1,9 @@
 <md-toolbar>
     <span>Nyk App</span>
+    <div class="pull-right">
+        Token expire in {{tokenExpire$|async}}
+    </div>
 </md-toolbar>
-<a [routerLink]="''">Index</a>
-
-
-<a [routerLink]="'accounts'">Accounts</a>
-
-Token expire in {{tokenExpire$|async}}
 
 
 <nyk-user-login-required *ngIf="(showLoginForm$|async)"></nyk-user-login-required>

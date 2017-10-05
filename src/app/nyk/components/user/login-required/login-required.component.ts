@@ -10,15 +10,15 @@ import {Observable} from 'rxjs/Observable';
     styleUrls: ['./login-required.component.scss']
 })
 export class NykUserLoginRequiredComponent implements OnInit {
-    ngOnInit(): void {
-        this.showLoginForm$.filter(v => !v).subscribe(() => this.loginDialogService.close());
-    }
-
     showLoginForm$: Observable<boolean>;
 
     constructor(private loginDialogService: LoginDialogsService, private store: Store<StateCollection>) {
-        this.showLoginForm$ = this.store.select(TokenState.getTokenShowLoginForm);
+        this.showLoginForm$ = this.store.select(TokenState.showLoginForm);
 
+    }
+
+    ngOnInit(): void {
+        this.showLoginForm$.filter(v => !v).subscribe(() => this.loginDialogService.close());
     }
 
     openLoginForm() {
