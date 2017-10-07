@@ -23,7 +23,6 @@ export class TokenEffects {
         .switchMap(() => {
             const savedToken = this.tokenService.getFromStorage();
             return Observable.of(savedToken)
-                .do(v => console.log(savedToken))
                 .map((response: TokenResponseInterface) => new token.SetToken(response))
                 .catch(() => Observable.of(new token.SetToken(null)));
             ;
@@ -35,7 +34,6 @@ export class TokenEffects {
         .ofType(token.GET_TOKEN)
         .map(toPayload)
         .switchMap(loginData => {
-            console.error(loginData)
             return this.tokenService.getAuthorizationToken(loginData.login, loginData.password)
                 .map(response => new token.SetToken(response))
                 .catch(() => Observable.of(new token.SetToken(null)));

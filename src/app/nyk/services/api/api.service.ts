@@ -30,7 +30,6 @@ export class ApiService {
                     headers.set('Accept', 'application/hal+json');
                     headers.set('Authorization', tokenString);
                     const options = new RequestOptions({headers: headers});
-                    console.error(options);
                     return this.http.get(fullPath, options)
                         .map(response => response.json());
                 }
