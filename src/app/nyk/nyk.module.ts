@@ -27,6 +27,8 @@ import {EffectsModule} from '@ngrx/effects';
 import {TokenEffects} from './redux/effects/token';
 import {NykUserLoginRequiredComponent} from './components/user/login-required/login-required.component';
 import {LocalStorageModule} from 'angular-2-local-storage';
+import {AccountService} from "./modules/account/account.service";
+import {AccountEffects} from './redux/effects/account';
 
 @NgModule({
     imports: [
@@ -47,8 +49,8 @@ import {LocalStorageModule} from 'angular-2-local-storage';
         MatProgressSpinnerModule,
         MatCardModule,
 
-
         EffectsModule.run(TokenEffects),
+        EffectsModule.run(AccountEffects),
 
         LocalStorageModule.withConfig({
             prefix: 'nyk',
@@ -59,6 +61,7 @@ import {LocalStorageModule} from 'angular-2-local-storage';
     providers: [
         TokenService,
         LoginDialogsService,
+        AccountService,
     ],
     exports:
         [

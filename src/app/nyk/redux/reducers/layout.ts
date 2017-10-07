@@ -3,12 +3,10 @@ import * as  layout from '../actions/layout';
 
 export interface State {
     showSidenav: boolean;
-    expire: number;
 }
 
 const initialState: State = {
-    showSidenav: false,
-    expire: 15
+    showSidenav: false
 };
 
 export function reducer(state = initialState, action: layout.Actions): State {
@@ -31,4 +29,3 @@ export function reducer(state = initialState, action: layout.Actions): State {
 }
 
 export const getShowSidenav = (state: State) => state.showSidenav;
-export const getShowSidenavExpire = (state: State) => state.expire;
