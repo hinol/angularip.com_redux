@@ -14,4 +14,8 @@ export class AccountService {
         return this.api.get('accounts')
             .map((response: AccountResponseInterface) => response._embedded.accounts);
     }
+
+    getAccountCode(account: AccountInterface) {
+        return account.regNo + '-' + account.accountNo;
+    }
 }

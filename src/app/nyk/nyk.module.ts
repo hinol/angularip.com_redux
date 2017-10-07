@@ -38,6 +38,8 @@ import {
     MatTableModule,
     MdToolbarModule
 } from '@angular/material';
+import { NykTransactionsComponent } from './components/transactions/transactions.component';
+import { NykAccountSingleFullComponent } from './components/accounts/single-full/single-full.component';
 
 @NgModule({
     imports: [
@@ -86,7 +88,7 @@ import {
     declarations:
         [
             NykComponent, NykIndexComponent, NykAccountsComponent, NykDialogLoginComponent,
-            NykUserLoginRequiredComponent, NykAccountSingleComponent, NykCustomersComponent, NykCustomerSingleComponent
+            NykUserLoginRequiredComponent, NykAccountSingleComponent, NykCustomersComponent, NykCustomerSingleComponent, NykTransactionsComponent, NykAccountSingleFullComponent
         ],
     entryComponents: [
         NykDialogLoginComponent

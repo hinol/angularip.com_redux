@@ -12,8 +12,8 @@
 
 <div class="row" *ngIf="(tokenExpire$|async)">
     <div class="col-md-3">
-        <a md-raised-button [routerLink]="[routes.CUSTOMER_LIST]">Customers</a>
-        <a md-raised-button [routerLink]="[routes.ACCOUNT_LIST]">Accounts</a>
+        <a md-raised-button (click)="store.dispatch(actions.CUSTOMER_GET_LIST)">Customers</a>
+        <a md-raised-button (click)="store.dispatch(actions.ACCOUNT_GET_LIST)">Accounts</a>
     </div>
     <div class="col-md-9">
         <router-outlet></router-outlet>
