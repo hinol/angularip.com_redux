@@ -44,6 +44,7 @@ export const getAccountState = (state: StateCollection) => state.account;
 
 export const AccountState = {
     getList: createSelector(getAccountState, fromAccount.getList),
+    getLoading: createSelector(getAccountState, fromAccount.getLoading),
 };
 
 

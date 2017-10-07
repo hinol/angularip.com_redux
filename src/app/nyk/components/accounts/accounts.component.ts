@@ -11,10 +11,12 @@ import {GetAcountList} from '../../redux/actions/account';
     styleUrls: ['./accounts.component.scss']
 })
 export class NykAccountsComponent implements OnInit {
-    accountList$: Observable<AccountInterface>;
+    loading$: Observable<boolean>;
+    accountList$: Observable<AccountInterface[]>;
 
     constructor(private store: Store<StateCollection>) {
         this.accountList$ = this.store.select(AccountState.getList);
+        this.loading$ = this.store.select(AccountState.getLoading);
     }
 
     ngOnInit() {

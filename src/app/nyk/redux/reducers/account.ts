@@ -2,7 +2,7 @@ import * as  account from '../actions/account';
 import {AccountInterface} from '../../modules/account/account.interface';
 
 export interface State {
-    list: AccountInterface;
+    list: AccountInterface[];
     loading: boolean;
 }
 
@@ -26,7 +26,12 @@ export function reducer(state = initialState, action: account.Actions): State {
                 loading: false
             };
         }
+
+        default: {
+            return state;
+        }
     }
 }
 
 export const getList = (state: State) => state.list;
+export const getLoading = (state: State) => state.loading;

@@ -12,14 +12,6 @@ import {NykComponent} from './nyk.component';
 import {routes} from './routes';
 
 import {StoreModule} from '@ngrx/store';
-import {
-    MatButtonModule,
-    MatCardModule,
-    MatDialogModule,
-    MatInputModule,
-    MatProgressSpinnerModule,
-    MdToolbarModule,
-} from '@angular/material';
 import {NykDialogLoginComponent} from './components/dialog/login/login.component';
 import {reducer} from './redux/reducers';
 import {LoginDialogsService} from './components/dialog/login/login.dialog.service';
@@ -27,10 +19,20 @@ import {EffectsModule} from '@ngrx/effects';
 import {TokenEffects} from './redux/effects/token';
 import {NykUserLoginRequiredComponent} from './components/user/login-required/login-required.component';
 import {LocalStorageModule} from 'angular-2-local-storage';
-import {AccountService} from "./modules/account/account.service";
+import {AccountService} from './modules/account/account.service';
 import {AccountEffects} from './redux/effects/account';
 import {ApiService} from './services/api/api.service';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
+import {NykAccountSingleComponent} from './components/accounts/single/single.component';
+import {
+    MatButtonModule,
+    MatCardModule,
+    MatDialogModule,
+    MatInputModule,
+    MatProgressSpinnerModule,
+    MatTableModule,
+    MdToolbarModule,
+} from '@angular/material';
 
 @NgModule({
     imports: [
@@ -50,6 +52,8 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
         MatInputModule,
         MatProgressSpinnerModule,
         MatCardModule,
+        MatTableModule,
+
         StoreDevtoolsModule.instrumentOnlyWithExtension(),
 
         EffectsModule.run(TokenEffects),
@@ -73,7 +77,8 @@ import {StoreDevtoolsModule} from '@ngrx/store-devtools';
         ],
     declarations:
         [
-            NykComponent, NykIndexComponent, NykAccountsComponent, NykDialogLoginComponent, NykUserLoginRequiredComponent
+            NykComponent, NykIndexComponent, NykAccountsComponent, NykDialogLoginComponent,
+            NykUserLoginRequiredComponent, NykAccountSingleComponent
         ],
     entryComponents: [
         NykDialogLoginComponent
