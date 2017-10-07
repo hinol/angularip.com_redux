@@ -31,13 +31,21 @@ export function reducer(state = initialState, action: token.Actions): State {
             };
         }
         case token.SET_TOKEN: {
-            return {
-                ...state,
-                tokenResponse: action.payload,
-                expire: action.payload.expires_in,
-                loginProcess: false,
-                showLoginForm: false
-            };
+
+            if (action.payload) {
+                return {
+                    ...state,
+                    tokenResponse: action.payload,
+                    expire: action.payload.expires_in,
+                    loginProcess: false,
+                    showLoginForm: false
+                };
+            } else {
+                return {
+                    ...state,
+                    loginProcess: false
+                };
+            }
         }
         case token.SET_EXPIRE: {
 

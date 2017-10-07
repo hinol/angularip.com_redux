@@ -35,7 +35,7 @@ export class TokenEffects {
         .ofType(token.GET_TOKEN)
         .map(toPayload)
         .switchMap(loginData => {
-
+            console.error(loginData)
             return this.tokenService.getAuthorizationToken(loginData.login, loginData.password)
                 .map(response => new token.SetToken(response))
                 .catch(() => Observable.of(new token.SetToken(null)));
@@ -45,6 +45,7 @@ export class TokenEffects {
     setToken$: Observable<Action> = this.actions$
         .ofType(token.SET_TOKEN)
         .map(toPayload)
+        .filter(payload => !!payload)
         .map(payload => new token.SetExpire(payload.expires_in));
 
     @Effect()

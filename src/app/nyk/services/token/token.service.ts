@@ -21,7 +21,6 @@ export class TokenService {
         headers.set('Content-Type', 'application/x-www-form-urlencoded');
         headers.set('Authorization', 'Basic ' + btoa(login + ':' + password));
         const options = new RequestOptions({headers: headers});
-
         return this.http.post(
             environment.oauth.tokenUrl,
             'grant_type=client_credentials',
@@ -44,4 +43,8 @@ export class TokenService {
         return <TokenResponseInterface>this.localStorageService.get(this.STORAGE_TOKEN_KEY);
     }
 
+
+    public getTokenString(token: TokenResponseInterface): string {
+        return token.token_type + ' ' + token.access_token;
+    }
 }

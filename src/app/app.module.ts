@@ -7,11 +7,11 @@ import {RouterModule} from '@angular/router';
 @NgModule({
     declarations: [
         AppComponent,
+
     ],
     imports: [
         NykModule,
-        RouterModule
-    ],
+        RouterModule],
     providers: [],
     bootstrap: [AppComponent]
 })
