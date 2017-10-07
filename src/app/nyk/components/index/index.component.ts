@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {NYK_ROUTES} from '../../services/nyk-routes';
 
 @Component({
     selector: 'nyk-index',
@@ -7,6 +8,7 @@ import {Component, OnInit} from '@angular/core';
 })
 export class NykIndexComponent implements OnInit {
 
+    public routes = NYK_ROUTES;
     constructor() {
     }
 

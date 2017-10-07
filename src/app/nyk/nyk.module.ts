@@ -24,14 +24,19 @@ import {AccountEffects} from './redux/effects/account';
 import {ApiService} from './services/api/api.service';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {NykAccountSingleComponent} from './components/accounts/single/single.component';
+import {NykCustomersComponent} from './components/customers/customers.component';
+import {NykCustomerSingleComponent} from './components/customers/single/single.component';
+import {CustomerEffects} from './redux/effects/customer';
+import {CustomerService} from "./modules/customer/customer.service";
 import {
     MatButtonModule,
     MatCardModule,
     MatDialogModule,
     MatInputModule,
+    MatMenuModule,
     MatProgressSpinnerModule,
     MatTableModule,
-    MdToolbarModule,
+    MdToolbarModule
 } from '@angular/material';
 
 @NgModule({
@@ -53,11 +58,13 @@ import {
         MatProgressSpinnerModule,
         MatCardModule,
         MatTableModule,
+        MatMenuModule,
 
         StoreDevtoolsModule.instrumentOnlyWithExtension(),
 
         EffectsModule.run(TokenEffects),
         EffectsModule.run(AccountEffects),
+        EffectsModule.run(CustomerEffects),
 
         LocalStorageModule.withConfig({
             prefix: 'nyk',
@@ -70,6 +77,7 @@ import {
         LoginDialogsService,
         AccountService,
         ApiService,
+        CustomerService,
     ],
     exports:
         [
@@ -78,7 +86,7 @@ import {
     declarations:
         [
             NykComponent, NykIndexComponent, NykAccountsComponent, NykDialogLoginComponent,
-            NykUserLoginRequiredComponent, NykAccountSingleComponent
+            NykUserLoginRequiredComponent, NykAccountSingleComponent, NykCustomersComponent, NykCustomerSingleComponent
         ],
     entryComponents: [
         NykDialogLoginComponent

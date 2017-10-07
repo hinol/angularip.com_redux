@@ -1,0 +1,9 @@
+<h1>Customers</h1>
+
+<div *ngIf="loading$|async">
+    <md-spinner></md-spinner>
+</div>
+
+<div *ngFor="let customer of customerList$ | async">
+    <nyk-customer-single [customer]="customer"></nyk-customer-single>
+</div>

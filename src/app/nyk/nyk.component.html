@@ -10,10 +10,15 @@
 
 <nyk-user-login-required *ngIf="(showLoginForm$|async)"></nyk-user-login-required>
 
-
-<router-outlet *ngIf="tokenExpire$|async">
-    <nyk-accounts></nyk-accounts>
-</router-outlet>
+<div class="row" *ngIf="(tokenExpire$|async)">
+    <div class="col-md-3">
+        <a md-raised-button [routerLink]="[routes.CUSTOMER_LIST]">Customers</a>
+        <a md-raised-button [routerLink]="[routes.ACCOUNT_LIST]">Accounts</a>
+    </div>
+    <div class="col-md-9">
+        <router-outlet></router-outlet>
+    </div>
+</div>
 
 
 
