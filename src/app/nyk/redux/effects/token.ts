@@ -23,7 +23,7 @@ export class TokenEffects {
         .switchMap(() => {
             const savedToken = this.tokenService.getFromStorage();
             return Observable.of(savedToken)
-                .filter(v => !!v)
+          
                 .map((response: TokenResponseInterface) => new token.SetToken(response))
                 .catch(() => Observable.of(new token.SetToken(null)));
         });
