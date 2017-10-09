@@ -13,6 +13,10 @@ import {LocalStorageService} from 'angular-2-local-storage';
 export class TokenService {
     private STORAGE_TOKEN_KEY = 'STORAGE_TOKEN_KEY';
 
+    static get currentSec() {
+        return new Date().getTime() / 1000;
+    }
+
     constructor(private http: Http, private localStorageService: LocalStorageService) {
     }
 
@@ -26,6 +30,10 @@ export class TokenService {
             'grant_type=client_credentials',
             options)
             .map(data => data.json())
+            .map(token => {
+                token.expire_time = token.expires_in + TokenService.currentSec;
+                return token;
+            })
             .do(token => this.saveToStorage(token));
     }
 
@@ -43,8 +51,12 @@ export class TokenService {
         return <TokenResponseInterface>this.localStorageService.get(this.STORAGE_TOKEN_KEY);
     }
 
-
     public getTokenString(token: TokenResponseInterface): string {
         return token.token_type + ' ' + token.access_token;
+    }
+
+    public getTokenLife(token: TokenResponseInterface): number {
+        const live = token.expire_time - TokenService.currentSec;
+        return live > 0 ? live : 0;
     }
 }

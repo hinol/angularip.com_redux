@@ -23,9 +23,9 @@ export class TokenEffects {
         .switchMap(() => {
             const savedToken = this.tokenService.getFromStorage();
             return Observable.of(savedToken)
+                .filter(v => !!v)
                 .map((response: TokenResponseInterface) => new token.SetToken(response))
                 .catch(() => Observable.of(new token.SetToken(null)));
-            ;
         });
 
 
@@ -44,20 +44,14 @@ export class TokenEffects {
         .ofType(token.SET_TOKEN)
         .map(toPayload)
         .filter(payload => !!payload)
-        .map(payload => new token.SetExpire(payload.expires_in));
-
-    @Effect()
-    setExpire$: Observable<Action> = this.actions$
-        .ofType(token.SET_EXPIRE)
-        .map(toPayload)
-        .switchMap(expire => {
-            if (expire > 0) {
-                this.tokenService.saveExpireToStorage(expire - 1)
-                return Observable.timer(1000)
-                    .map(v => new token.SetExpire(expire - 1));
-            } else {
-                return Observable.empty();
-            }
+        .switchMap(currentToken => {
+            return Observable
+                .interval(1000)
+                .map(() => {
+                    let live = this.tokenService.getTokenLife(currentToken);
+                    live = Math.round(live);
+                    this.tokenService.saveExpireToStorage(live);
+                    return new token.SetExpire(live);
+                });
         });
-
 }

@@ -9,6 +9,7 @@ import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/observable/never';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/observable/timer';
+import 'rxjs/add/observable/interval';
 import 'rxjs/add/operator/first';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
