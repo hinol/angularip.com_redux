@@ -1,45 +1,45 @@
 <div *ngIf="loginProcess$|async" class="d-flex justify-content-center">
-    <md-spinner></md-spinner>
+    <mat-spinner></mat-spinner>
 </div>
 <form *ngIf="!(loginProcess$|async)" [formGroup]="loginForm" novalidate
       (ngSubmit)="tryLogin(loginForm.value, loginForm.valid)">
     <div class="form-group text-center">
-        <md-input-container>
-            <input mdInput type="text" class="form-control" formControlName="login" name="login" placeholder="Login">
-            <md-hint *ngIf="submitted && loginForm.hasError('required', ['login'])" class="text-danger">
+        <mat-input-container>
+            <input matInput type="text" class="form-control" formControlName="login" name="login" placeholder="Login">
+            <mat-hint *ngIf="submitted && loginForm.hasError('required', ['login'])" class="text-danger">
                 Email is required
-            </md-hint>
-            <md-hint *ngIf="submitted && loginForm.hasError('minlength', ['login'])" class="text-danger">
+            </mat-hint>
+            <mat-hint *ngIf="submitted && loginForm.hasError('minlength', ['login'])" class="text-danger">
                 Invalid length
-            </md-hint>
-        </md-input-container>
+            </mat-hint>
+        </mat-input-container>
     </div>
     <div class="form-group text-center">
-        <md-input-container>
-            <input mdInput type="password" class="form-control" formControlName="password" name="password"
+        <mat-input-container>
+            <input matInput type="password" class="form-control" formControlName="password" name="password"
                    placeholder="password">
-            <md-hint *ngIf="submitted && loginForm.hasError('required', ['password'])" class="text-danger">
+            <mat-hint *ngIf="submitted && loginForm.hasError('required', ['password'])" class="text-danger">
                 Password is required
-            </md-hint>
-            <md-hint *ngIf="submitted && loginForm.hasError('minlength', ['password'])" class="text-danger">
+            </mat-hint>
+            <mat-hint *ngIf="submitted && loginForm.hasError('minlength', ['password'])" class="text-danger">
                 Minimum length is 5
-            </md-hint>
-        </md-input-container>
+            </mat-hint>
+        </mat-input-container>
     </div>
 
     <div class="text-center">
-        <button type="submit" color="accent" class="btn btn-default" md-raised-button>Login</button>
+        <button type="submit" color="accent" class="btn btn-default" mat-raised-button>Login</button>
     </div>
-    <md-card>
-        <md-card-content class="d-flex justify-content-between">
+    <mat-card>
+        <mat-card-content class="d-flex justify-content-between">
             <div>
                 Default data:
                 Login: 'test-clientid', <br>
                 Password: 'password' <br>
             </div>
             <div>
-                <button md-raised-button (click)="setDefaultData()" type="button">Set default data</button>
+                <button mat-raised-button (click)="setDefaultData()" type="button">Set default data</button>
             </div>
-        </md-card-content>
-    </md-card>
+        </mat-card-content>
+    </mat-card>
 </form>

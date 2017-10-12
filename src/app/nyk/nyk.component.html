@@ -1,11 +1,11 @@
-<md-toolbar>
+<mat-toolbar>
     <span>Nyk App</span>
     <span class="example-spacer"></span>
 
-    <md-icon>
+    <mat-icon>
         Token expire in {{tokenExpire$|async}}
-    </md-icon>
-</md-toolbar>
+    </mat-icon>
+</mat-toolbar>
 
 
 <nyk-user-login-required *ngIf="(showLoginForm$|async)"></nyk-user-login-required>
@@ -13,8 +13,8 @@
 
 <div class="row" *ngIf="(tokenExpire$|async)">
     <div class="col-md-3">
-        <a md-raised-button (click)="store.dispatch(actions.CUSTOMER_GET_LIST)">Customers</a>
-        <a md-raised-button (click)="store.dispatch(actions.ACCOUNT_GET_LIST)">Accounts</a>
+        <a mat-raised-button (click)="store.dispatch(actions.CUSTOMER_GET_LIST)">Customers</a>
+        <a mat-raised-button (click)="store.dispatch(actions.ACCOUNT_GET_LIST)">Accounts</a>
     </div>
     <div class="col-md-9">
         <router-outlet></router-outlet>

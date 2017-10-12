@@ -1,7 +1,7 @@
 <h1>Accounts</h1>
 
 <div *ngIf="loading$|async">
-    <md-spinner></md-spinner>
+    <mat-spinner></mat-spinner>
 </div>
 
 <div *ngFor="let account of accountList$ | async">

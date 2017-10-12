@@ -1,5 +1,5 @@
 import {Observable} from 'rxjs/Rx';
-import {MdDialog, MdDialogConfig} from '@angular/material';
+import {MatDialog, MatDialogConfig} from '@angular/material';
 import {Injectable} from '@angular/core';
 import {NykDialogLoginComponent} from './login.component';
 
@@ -7,11 +7,11 @@ import {NykDialogLoginComponent} from './login.component';
 export class LoginDialogsService {
     private showLoginForm$: Observable<boolean>;
 
-    constructor(private dialog: MdDialog) {
+    constructor(private dialog: MatDialog) {
     }
 
     public login(): Observable<boolean> {
-        const config: MdDialogConfig = {
+        const config: MatDialogConfig = {
             width: '600px',
             disableClose: true
         };

@@ -27,7 +27,7 @@ import {NykAccountSingleComponent} from './components/accounts/single/single.com
 import {NykCustomersComponent} from './components/customers/customers.component';
 import {NykCustomerSingleComponent} from './components/customers/single/single.component';
 import {CustomerEffects} from './redux/effects/customer';
-import {CustomerService} from "./modules/customer/customer.service";
+import {CustomerService} from './modules/customer/customer.service';
 import {
     MatButtonModule,
     MatCardModule,
@@ -36,10 +36,11 @@ import {
     MatMenuModule,
     MatProgressSpinnerModule,
     MatTableModule,
-    MdToolbarModule
+    MatToolbarModule,
+    NoConflictStyleCompatibilityMode
 } from '@angular/material';
-import { NykTransactionsComponent } from './components/transactions/transactions.component';
-import { NykAccountSingleFullComponent } from './components/accounts/single-full/single-full.component';
+import {NykTransactionsComponent} from './components/transactions/transactions.component';
+import {NykAccountSingleFullComponent} from './components/accounts/single-full/single-full.component';
 
 @NgModule({
     imports: [
@@ -52,8 +53,8 @@ import { NykAccountSingleFullComponent } from './components/accounts/single-full
         FormsModule,
         ReactiveFormsModule,
         StoreModule.provideStore(reducer),
-
-        MdToolbarModule,
+        NoConflictStyleCompatibilityMode,
+        MatToolbarModule,
         MatDialogModule,
         MatButtonModule,
         MatInputModule,
@@ -61,6 +62,7 @@ import { NykAccountSingleFullComponent } from './components/accounts/single-full
         MatCardModule,
         MatTableModule,
         MatMenuModule,
+
 
         StoreDevtoolsModule.instrumentOnlyWithExtension(),
 
